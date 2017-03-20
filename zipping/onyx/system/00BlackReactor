@@ -13,9 +13,6 @@ SYSTEM_DEVICE="/dev/block/platform/msm_sdcc.1/by-name/system"
 CACHE_DEVICE="/dev/block/platform/msm_sdcc.1/by-name/cache"
 DATA_DEVICE="/dev/block/platform/msm_sdcc.1/by-name/userdata"
 
-# useful vars
-FST_CHG_VALUE=$(sed -n 1p /data/BlackReactor/fastchg_current)
-
  mount -o remount,rw /system
  mount -o remount,rw /data
 
@@ -37,12 +34,5 @@ cat /proc/version >> $REACTOR__S_LOGFILE
 echo "=========================" >> $REACTOR__S_LOGFILE
 grep ro.build.version /system/build.prop >> $REACTOR__S_LOGFILE
 echo "=========================" >> $REACTOR__S_LOGFILE
-if [ ! $FST_CHG_VALUE -eq 0 ]; then
-	echo 1 > /sys/kernel/fast_charge/force_fast_charge
-fi
-echo "Previous value of fastchg_current: $FST_CHG_VALUE" >> $REACTOR__S_LOGFILE
-echo "$(date) Running setcurr: $FST_CHG_VALUE" >> $REACTOR__S_LOGFILE
-setcurr $FST_CHG_VALUE >> $REACTOR__S_LOGFILE
-echo "\n=========================\n" >> $REACTOR__S_LOGFILE
 echo "$(date) End Log" >> $REACTOR__S_LOGFILE
 echo "\n=========================\n" >> $REACTOR__S_LOGFILE
