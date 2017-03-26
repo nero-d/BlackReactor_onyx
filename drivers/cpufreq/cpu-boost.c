@@ -262,10 +262,8 @@ static void do_input_boost(struct work_struct *work)
 			break;
 		}
 		
-		// ensure, touch boost freq never exceeds max scaling freq
-		
-		policy.cur=min(input_boost_freq,policy.max);
-
+		if (policy.cur >= input_boost_freq)
+			continue;
 
 		cancel_delayed_work_sync(&i_sync_info->input_boost_rem);
 		i_sync_info->input_boost_min = freq;
