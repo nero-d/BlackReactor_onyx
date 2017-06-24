@@ -40,7 +40,13 @@ echo 1024 > /sys/block/mmcblk0/queue/read_ahead_kb
 echo 2048 > /sys/block/mmcblk1/queue/read_ahead_kb
 echo row > /sys/block/mmcblk0/queue/scheduler
 echo row > /sys/block/mmcblk1/queue/scheduler
-echo 600 > /proc/sys/vm/dirty_writeback_centisecs
+echo 0 > /proc/sys/vm/swappiness
+echo 6000 > /proc/sys/vm/dirty_writeback_centisecs
+echo 5000 > /proc/sys/vm/dirty_writeback_centisecs
+echo 25 > /proc/sys/vm/overcommit_ratio
+echo 25 > /proc/sys/vm/dirty_ratio
+echo 13 > echo 25 > /proc/sys/vm/dirty_background_ratio
+echo 25 > echo 25 > /proc/sys/vm/vfs_cache_pressure
 echo 8192 > /proc/sys/vm/min_free_kbytes
 echo 32768 > /proc/sys/vm/extra_free_kbytes
 echo 512 > /proc/sys/kernel/random/read_wakeup_threshold
@@ -48,8 +54,4 @@ echo 652800 > /sys/module/cpu_boost/parameters/sync_threshold
 echo 729600 > /sys/module/cpu_boost/parameters/input_boost_freq
 echo 0 > /sys/block/mmcblk0/queue/iostats
 echo 0 > /sys/block/mmcblk0/queue/add_random
-echo 0 > /proc/sys/vm/swappiness
-echo 600 > /proc/sys/vm/dirty_writeback_centisecs
-echo 8192 > /proc/sys/vm/min_free_kbytes
-echo 32768 > /proc/sys/vm/extra_free_kbytes
 echo 512 > /proc/sys/kernel/random/read_wakeup_threshold
